@@ -11,19 +11,20 @@
 };
 */
 function converter(biomarker, convertFrom, convertTo, valueToConvert){
-if (biomarker === 0){
-	if ((convertFrom === 0)&&(convertTo === 1)){
-		let result = valueToConvert*18
-		return result;
-	} else if ((convertFrom === 1)&&(convertTo === 0)) {
-		let result = valueToConvert/18
-		return result;
-	}
+	if (biomarker === 0){
+		if ((convertFrom === 0)&&(convertTo === 1)){
+			let result = valueToConvert*18
+			return result;
+			} else if ((convertFrom === 1)&&(convertTo === 0)) {
+			let result = valueToConvert*0.05555556
+			return result;
+		}
 	}
 } 
 
 
-function insulinConverter(insulinValueMMolL){
+/*function insulinConverter(insulinValueMMolL){
 	let insulinValueMgDl = insulinValueMMolL*18;
 	return insulinValueMgDl;
 }
+*/
