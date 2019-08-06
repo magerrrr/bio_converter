@@ -5,6 +5,15 @@
 	<title>Bio converter</title>
 </head>
 <body>
+	<h2>Bio Converter</h2>
+	<p>Type a Insulin value in the mmol/L field to convert the value to mg/dL:</p>
+
+<p>
+  <label>mmol/L</label>
+  <input id="inputmmolperl" type="number" placeholder="MMOLPERL" oninput="insulinConverter(this.value)" onchange="insulinConverter(this.value)">
+</p>
+<p>mg/dL: <span id="outputMGPERDL"></span></p>
+
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

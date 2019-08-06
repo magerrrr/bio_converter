@@ -10,6 +10,11 @@
 	}
 };
 */
+
+function insulinConverter(insulinValueMMolL) {
+  document.getElementById("outputMGPERDL").innerHTML=insulinValueMMolL*18;
+}
+
 function converter(biomarker, convertFrom, convertTo, valueToConvert){
 	if (biomarker === 0){
 		if ((convertFrom === 0)&&(convertTo === 1)){
@@ -26,5 +31,6 @@ function converter(biomarker, convertFrom, convertTo, valueToConvert){
 /*function insulinConverter(insulinValueMMolL){
 	let insulinValueMgDl = insulinValueMMolL*18;
 	return insulinValueMgDl;
-}
-*/
+}*/
+
+
