@@ -24,17 +24,21 @@ let converterDB = {
 			},
 		2: {name:'Cholesterol, low-density (LDL) (high level)',
 			unit: 
-				[['mmol/L', 0.0259], // > 4.144
-				 ['pmol/L', 0     ], 
-				 ['mg/dL',  1     ], // > 160
- 				 ['mg/mL',  0.1   ],
- 				 ['g',      0     ],
-				 ['IU',     0     ], 
-				 ['µIU/mL', 0     ], 
-				 ['mIU/L',  0     ],
-				 ['µmol/L', 0     ],
-				 ['mg/L',   10    ],
-				 ['nmol/L', 0     ], 				  
+				[['mmol/L', 0.0259      ], // > 4.144
+				 ['µmol/L', 0           ], 
+				 ['nmol/L', 0           ],
+				 ['pmol/L', 0           ],
+ 				 ['mg/mL' , 0.1         ], 
+				 ['mg/dL' , 1           ], // > 160
+				 ['mg/L'  , 10          ], 
+				 ['µg/mL' , 0           ],
+				 ['µg/dL' , 0           ],
+				 ['µg/L'  , 0           ],
+				 ['ng/mL' , 0           ], 
+ 				 ['g'     , 0           ],
+				 ['IU'    , 0           ], 
+				 ['µIU/mL', 0           ], 
+				 ['mIU/L' , 0           ],				  
 				],
 			},
 		3: {name:'Cholesterol, high-density (HDL) (low level)',
