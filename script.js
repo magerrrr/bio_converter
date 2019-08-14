@@ -69,7 +69,7 @@ let converterDB = {
 			},	
 		5: {name:'CRP (C-reactive protein)',
 			unit: 
-				[['mmol/L', 0      ], // 0.76-28.5
+				[['mmol/L', 0      ], // 0.76 - 28.5
 				 ['pmol/L', 0      ], 
 				 ['mg/dL',  0      ], 
  				 ['mg/mL',  0      ],
@@ -78,10 +78,25 @@ let converterDB = {
 				 ['µIU/mL', 0      ], 
 				 ['mIU/L',  0      ],
 				 ['µmol/L', 0      ],
-				 ['mg/L',   1      ],	//0.08 - 3.1
+				 ['mg/L',   1      ], //0.08 - 3.1
 				 ['nmol/L', 9.524  ],			  
 				],
-			},								
+			},
+		6: {name:'Homocysteine',
+			unit: 
+				[['mmol/L', 0      ], 
+				 ['pmol/L', 0      ], 
+				 ['mg/dL',  0      ], 
+ 				 ['mg/mL',  0      ],
+ 				 ['g',      0      ],
+				 ['IU',     0      ], 
+				 ['µIU/mL', 0      ], 
+				 ['mIU/L',  0      ],
+				 ['µmol/L', 7.397  ], //5 - 15
+				 ['mg/L',   1      ], //0.68 - 2.02
+				 ['nmol/L', 0      ],			  
+				],
+			},												
 	},
 	units: {
 		0: 'mmol/L',
