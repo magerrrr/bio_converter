@@ -96,6 +96,21 @@ let converterDB = {
 				 ['mg/L',   1      ], //0.68 - 2.02
 				 ['nmol/L', 0      ],			  
 				],
+			},
+		7: {name:'Thyrotropin',
+			unit: 
+				[['mmol/L', 0      ], 
+				 ['pmol/L', 0      ], 
+				 ['mg/dL',  0      ], 
+ 				 ['mg/mL',  0      ],
+ 				 ['g',      0      ],
+				 ['IU',     0      ], 
+				 ['µIU/mL', 1      ], // 0.4 - 4.2
+				 ['mIU/L',  1      ], // 0.4 - 4.2
+				 ['µmol/L', 0      ],
+				 ['mg/L',   0      ],
+				 ['nmol/L', 0      ],			  
+				],
 			},												
 	},
 	units: {
@@ -139,19 +154,23 @@ function converter(biomarker, convertFrom, convertTo, value){
 	return result.toFixed(2);
 }
 
-	// Проверка для Инсулина: converter(0,1,6,180) = 25.9 µIU/mL
-	// Проверка для Инсулина: converter(0,6,1,25)  = 173.6 pmol/L
-	// Проверка для  Глюкозы: convert(1,0,2,5)     = 90.07795 mg/dL
-	// Проверка для  Глюкозы: convert(1,1,0,90)    = 4.9 mmol/L
-	// Проверка для      LDL: convert(2,2,0,160)   = 4.14 mmol/L
-	// Проверка для      LDL: convert(2,0,2,4)     = 154.4 mg/dL
-	// Проверка для      HDL: convert(3,2,0,40)    = 1.036 mmol/L
-	// Проверка для      HDL: convert(3,0,2,1)     = 38.6 mg/dL	
-	// Проверка для      HDL: convert(3,0,3,1)     = 3.861 mg/dL
-	// Проверка для       TG: convert(4,2,0,120)   = 1.36 mmol/L	
-	// Проверка для       TG: convert(4,0,2,1.1)   = 97.35 mg/dL
-	// Проверка для      CRP: convert(5,9,10,2)    = 19.05 nmol/L
-	// Проверка для      CRP: convert(5,10,9,20)   = 2.10 mg/dL
+	// Проверка для Инсулина: converter(0,1,6,180)   = 25.9 µIU/mL
+	// Проверка для Инсулина: converter(0,6,1,25)    = 173.6 pmol/L
+	// Проверка для  Глюкозы: convert(1,0,2,5)       = 90.07795 mg/dL
+	// Проверка для  Глюкозы: convert(1,1,0,90)      = 4.9 mmol/L
+	// Проверка для      LDL: convert(2,2,0,160)     = 4.14 mmol/L
+	// Проверка для      LDL: convert(2,0,2,4)       = 154.4 mg/dL
+	// Проверка для      HDL: convert(3,2,0,40)      = 1.036 mmol/L
+	// Проверка для      HDL: convert(3,0,2,1)       = 38.6 mg/dL	
+	// Проверка для      HDL: convert(3,0,3,1)       = 3.861 mg/dL
+	// Проверка для       TG: convert(4,2,0,120)     = 1.36 mmol/L	
+	// Проверка для       TG: convert(4,0,2,1.1)     = 97.35 mg/dL
+	// Проверка для      CRP: convert(5,9,10,2)      = 19.05 nmol/L
+	// Проверка для      CRP: convert(5,10,9,20)     = 2.10 mg/dL
+	// Проверка для Homocysteine: convert(6,9,8,1.5) = 11.1 µmol/L
+	// Проверка для Homocysteine: convert(6,8,9,11)  = 1.49 mg/L
+	// Проверка для Homocysteine: convert(7,6,7,1.5) = 1.5 mIU/L
+	// Проверка для Homocysteine: convert(7,7,6,1.5)  = 1.5 µIU/mL	
 
 
 
