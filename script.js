@@ -11,7 +11,8 @@ let converterDB = {
 				 ['µIU/mL', 1        ], // 2.0-20 нормальный диапазон
 				 ['mIU/L',  1        ],
 				 ['µmol/L', 0        ],
-				 ['mg/L',   3.47     ],  
+				 ['mg/L',   3.47     ],
+				 ['nmol/L', 0        ],  
 				],
 			},
 		1: {name:'Glucose',
@@ -32,7 +33,8 @@ let converterDB = {
 				 ['µIU/mL', 0     ], 
 				 ['mIU/L',  0     ],
 				 ['µmol/L', 0     ],
-				 ['mg/L',   10    ], 				  
+				 ['mg/L',   10    ],
+				 ['nmol/L', 0     ], 				  
 				],
 			},
 		3: {name:'Cholesterol, high-density (HDL) (low level)',
@@ -46,7 +48,8 @@ let converterDB = {
 				 ['µIU/mL', 0     ], 
 				 ['mIU/L',  0     ],
 				 ['µmol/L', 0     ],
-				 ['mg/L',   10    ],  
+				 ['mg/L',   10    ],
+				 ['nmol/L', 0     ],  
 				],
 			},
 		4: {name:'Triglycerides (TG)',
@@ -60,9 +63,25 @@ let converterDB = {
 				 ['µIU/mL', 0      ], 
 				 ['mIU/L',  0      ],
 				 ['µmol/L', 11.2994],
-				 ['mg/L',   10     ],				  
+				 ['mg/L',   10     ],
+				 ['nmol/L', 0      ],				  
 				],
-			},						
+			},	
+		5: {name:'CRP (C-reactive protein)',
+			unit: 
+				[['mmol/L', 0      ], // 0.76-28.5
+				 ['pmol/L', 0      ], 
+				 ['mg/dL',  0      ], 
+ 				 ['mg/mL',  0      ],
+ 				 ['g',      0      ],
+				 ['IU',     0      ], 
+				 ['µIU/mL', 0      ], 
+				 ['mIU/L',  0      ],
+				 ['µmol/L', 0      ],
+				 ['mg/L',   1      ],	//0.08 - 3.1
+				 ['nmol/L', 9.524  ],			  
+				],
+			},								
 	},
 	units: {
 		0: 'mmol/L',
@@ -75,6 +94,7 @@ let converterDB = {
 		7: 'mIU/L', // мМЕ/л
 		8: 'µmol/L', // мкмоль/л
 		9: 'mg/L', // мг/л = мкг/мл
+		10: 'nmol/l' //наномоль/л
 	}
 };
 
@@ -115,6 +135,8 @@ function converter(biomarker, convertFrom, convertTo, value){
 	// Проверка для      HDL: convert(3,0,3,1)     = 3.861 mg/dL
 	// Проверка для       TG: convert(4,2,0,120)   = 1.36 mmol/L	
 	// Проверка для       TG: convert(4,0,2,1.1)   = 97.35 mg/dL
+	// Проверка для      CRP: convert(5,9,10,2)    = 19.05 nmol/L
+	// Проверка для      CRP: convert(5,10,9,20)   = 2.10 mg/dL
 
 
 
