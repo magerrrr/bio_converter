@@ -83,19 +83,23 @@ let converterDB = {
 				],
 			},
 		6: {name:'Homocysteine',
-			unit: 
-				[['mmol/L', 0      ], 
-				 ['pmol/L', 0      ], 
-				 ['mg/dL',  0      ], 
- 				 ['mg/mL',  0      ],
- 				 ['g',      0      ],
-				 ['IU',     0      ], 
-				 ['µIU/mL', 0      ], 
-				 ['mIU/L',  0      ],
-				 ['µmol/L', 7.397  ], //5 - 15
-				 ['mg/L',   1      ], //0.68 - 2.02
-				 ['nmol/L', 0      ],			  
-				],
+			unit:
+				[['mmol/L', 0           ],
+				 ['µmol/L', 7.397       ], //5 - 15
+				 ['nmol/L', 0           ],
+				 ['pmol/L', 0           ],
+ 				 ['mg/mL' , 0           ], 
+				 ['mg/dL' , 0           ], 
+				 ['mg/L'  , 1           ], //0.68 - 2.02
+				 ['µg/mL' , 0           ],
+				 ['µg/dL' , 0           ],
+				 ['µg/L'  , 0           ],
+				 ['ng/mL' , 0           ], 
+ 				 ['g'     , 0           ],
+				 ['IU'    , 0           ], 
+				 ['µIU/mL', 0           ], 
+				 ['mIU/L' , 0           ], 
+				],			 
 			},
 		7: {name:'Thyrotropin', // проверить вычисление
 			unit: 
