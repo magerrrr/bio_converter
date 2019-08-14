@@ -9,7 +9,9 @@ let converterDB = {
  				 ['g',      0.0000347],
 				 ['IU',     1        ], 
 				 ['µIU/mL', 1        ], // 2.0-20 нормальный диапазон
-				 ['mIU/L',  1        ], 
+				 ['mIU/L',  1        ],
+				 ['µmol/L', 0        ],
+				 ['mg/L',   3.47     ],  
 				],
 			},
 		1: {name:'Glucose',
@@ -28,19 +30,37 @@ let converterDB = {
  				 ['g',      0     ],
 				 ['IU',     0     ], 
 				 ['µIU/mL', 0     ], 
-				 ['mIU/L',  0     ], 
+				 ['mIU/L',  0     ],
+				 ['µmol/L', 0     ],
+				 ['mg/L',   10    ], 				  
 				],
 			},
 		3: {name:'Cholesterol, high-density (HDL) (low level)',
 			unit: 
-				[['mmol/L', 0.0259], // < 1.03
+				[['mmol/L', 0.0259], // > 1.03
 				 ['pmol/L', 0     ], 
 				 ['mg/dL',  1     ], // < 40
  				 ['mg/mL',  0.1   ],
  				 ['g',      0     ],
 				 ['IU',     0     ], 
 				 ['µIU/mL', 0     ], 
-				 ['mIU/L',  0     ], 
+				 ['mIU/L',  0     ],
+				 ['µmol/L', 0     ],
+				 ['mg/L',   10    ],  
+				],
+			},
+		4: {name:'Triglycerides (TG)',
+			unit: 
+				[['mmol/L', 0.0113 ], // 0.14 - 1.82
+				 ['pmol/L', 0      ], 
+				 ['mg/dL',  1      ], // < 160
+ 				 ['mg/mL',  0.1    ],
+ 				 ['g',      0      ],
+				 ['IU',     0      ], 
+				 ['µIU/mL', 0      ], 
+				 ['mIU/L',  0      ],
+				 ['µmol/L', 11.2994],
+				 ['mg/L',   10     ],				  
 				],
 			},						
 	},
@@ -53,6 +73,8 @@ let converterDB = {
 		5: 'IU', // International Unit = МЕ (Международная Единица) = ЕД (Единица Действия). В фармакологии единица дозы вещества, основанная на его биологической активности
 		6: 'µIU/mL', // мкМЕ/мл = мкЕд/мл
 		7: 'mIU/L', // мМЕ/л
+		8: 'µmol/L', // мкмоль/л
+		9: 'mg/L', // мг/л = мкг/мл
 	}
 };
 
@@ -91,6 +113,8 @@ function converter(biomarker, convertFrom, convertTo, value){
 	// Проверка для      HDL: convert(3,2,0,40)    = 1.036 mmol/L
 	// Проверка для      HDL: convert(3,0,2,1)     = 38.6 mg/dL	
 	// Проверка для      HDL: convert(3,0,3,1)     = 3.861 mg/dL
+	// Проверка для       TG: convert(4,2,0,120)   = 1.36 mmol/L	
+	// Проверка для       TG: convert(4,0,2,1.1)   = 97.35 mg/dL
 
 
 
