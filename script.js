@@ -19,7 +19,7 @@ let converterDB = {
 			unit: 
 				[['mmol/L', 1         ],
 				 ['pmol/L', 1000000000],
-				 ['mg/dL',  18.015588 ],
+				 ['mg/dL',  18.015588 ], 
 				],
 			},
 		2: {name:'Cholesterol, low-density (LDL) (high level)',
@@ -130,18 +130,20 @@ let converterDB = {
 			},	
 		9: {name:'Zinc',
 			unit: 
-				[['mmol/L', 0           ], 
-				 ['pmol/L', 0           ], 
-				 ['mg/dL',  0           ], // проверить через атомную массу 65.38
- 				 ['mg/mL',  0           ],
+				[['mmol/L', 1           ], 
+				 ['pmol/L', 1000000000  ], 
+				 ['mg/dL',  6.538       ], // проверить через атомную массу 65.38
+ 				 ['mg/mL',  0.06538     ],
  				 ['g',      0           ],
 				 ['IU',     0           ], 
 				 ['µIU/mL', 0           ], 
 				 ['mIU/L',  0           ], 
-				 ['µmol/L', 3.7         ], // 0.56-1.01
-				 ['mg/L',   0           ],
-				 ['nmol/L', 0           ],
-				 ['µg/mL',  1           ], // 0.15-0.27
+				 ['µmol/L', 1000        ], 
+				 ['mg/L',   65.38       ],
+				 ['nmol/L', 1000000     ],
+				 ['µg/mL',  65.38       ],
+				 ['µg/L',   65380       ],
+				 ['µg/dL',  6538        ]				  
 				],
 			},
 		10: {name:'Ferritin',
@@ -158,7 +160,8 @@ let converterDB = {
 				 ['mg/L',   0           ],
 				 ['nmol/L', 0           ],
 				 ['µg/mL',  0           ],
-				 ['ng/mL',  1           ] 
+				 ['µg/L',   0           ],
+				 ['µg/dL',  0           ]				 
 				],
 			},																				
 	},
@@ -174,8 +177,9 @@ let converterDB = {
 		8: 'µmol/L', // мкмоль/л
 		9: 'mg/L', // мг/л = мкг/мл
 		10: 'nmol/l', //наномоль/л
-		11: 'µg/mL', //нюграмм/мл
-		12: 'ng/mL'
+		11: 'µg/mL', //мкг/мл
+		12: 'µg/L', // мкг/л
+		13: 'µg/dL' // мкг/дл
 	}
 };
 
@@ -194,10 +198,13 @@ function converter(biomarker, convertFrom, convertTo, value){
  		} 
 
 	let marker = converterDB.biomarkers[biomarker].name;
+
 	let unitFrom = converterDB.biomarkers[biomarker].unit[convertFrom][0]
 	let unitTo = converterDB.biomarkers[biomarker].unit[convertTo][0]
+
 	let convFrom = converterDB.biomarkers[biomarker].unit[convertFrom][1];
 	let convTo = converterDB.biomarkers[biomarker].unit[convertTo][1];
+	
 	let result = value * convTo/convFrom;
 
 	console.log('Биомаркер: ' + marker + '\n' + value + ' ' + unitFrom + ' = ' + result + ' ' + unitTo);
@@ -207,17 +214,17 @@ function converter(biomarker, convertFrom, convertTo, value){
 
 	// Проверка для Инсулина: converter(0,1,6,180)   = 25.9 µIU/mL
 	// Проверка для Инсулина: converter(0,6,1,25)    = 173.6 pmol/L
-	// Проверка для  Глюкозы: convert(1,0,2,5)       = 90.07795 mg/dL
-	// Проверка для  Глюкозы: convert(1,1,0,90)      = 4.9 mmol/L
-	// Проверка для      LDL: convert(2,2,0,160)     = 4.14 mmol/L
-	// Проверка для      LDL: convert(2,0,2,4)       = 154.4 mg/dL
-	// Проверка для      HDL: convert(3,2,0,40)      = 1.036 mmol/L
-	// Проверка для      HDL: convert(3,0,2,1)       = 38.6 mg/dL	
-	// Проверка для      HDL: convert(3,0,3,1)       = 3.861 mg/dL
-	// Проверка для       TG: convert(4,2,0,120)     = 1.36 mmol/L	
-	// Проверка для       TG: convert(4,0,2,1.1)     = 97.35 mg/dL
-	// Проверка для      CRP: convert(5,9,10,2)      = 19.05 nmol/L
-	// Проверка для      CRP: convert(5,10,9,20)     = 2.10 mg/dL
+	// Проверка для  Глюкозы: converter(1,0,2,5)       = 90.07795 mg/dL
+	// Проверка для  Глюкозы: converter(1,2,0,90)      = 4.9 mmol/L
+	// Проверка для      LDL: converter(2,2,0,160)     = 4.14 mmol/L
+	// Проверка для      LDL: converter(2,0,2,4)       = 154.4 mg/dL
+	// Проверка для      HDL: converter(3,2,0,40)      = 1.036 mmol/L
+	// Проверка для      HDL: converter(3,0,2,1)       = 38.6 mg/dL	
+	// Проверка для      HDL: converter(3,0,3,1)       = 3.861 mg/dL
+	// Проверка для       TG: converter(4,2,0,120)     = 1.36 mmol/L	
+	// Проверка для       TG: converter(4,0,2,1.1)     = 97.35 mg/dL
+	// Проверка для      CRP: converter(5,9,10,2)      = 19.05 nmol/L
+	// Проверка для      CRP: converter(5,10,9,20)     = 2.10 mg/dL
 	// Проверка для Homocysteine: convert(6,9,8,1.5) = 11.1 µmol/L
 	// Проверка для Homocysteine: convert(6,8,9,11)  = 1.49 mg/L
 	// Проверка для Homocysteine: convert(7,6,7,1.5) = 1.5 mIU/L
