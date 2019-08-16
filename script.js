@@ -74,6 +74,7 @@ let converterDB = {
 				 ['IU'    , 0           ], 
 				 ['µIU/mL', 0           ], 
 				 ['mIU/L' , 0           ],
+				 ],
 			},
 		4: {name:'Triglycerides (TG)',
 			unit: 
@@ -210,12 +211,12 @@ let converterDB = {
 			},																				
 	},
 	units: {
-		0:  'mmol/L',
-		1:  'µmol/L', // мкмоль/л
+		0:  'mmol/L', // ммоль/л (миллимоль на 1 л)
+ 		1:  'µmol/L', // мкмоль/л
 		2:  'nmol/l', // наномоль/л
-		3:  'pmol/L',
-		4:  'mg/mL' , // тоже самое что мг		
-		5:  'mg/dL' ,
+		3:  'pmol/L', // пмоль/л (пикомоль на 1 л)
+		4:  'mg/mL' , // практически тоже самое что и миллиграмы		
+		5:  'mg/dL' , // мг/дл
 		6:  'mg/L'  , // мг/л = мкг/мл
 		7:  'µg/mL' , // мкг/мл
 		8:  'µg/dL' , // мкг/дл
@@ -227,56 +228,23 @@ let converterDB = {
 		14: 'mIU/L' , // мМЕ/л
 	}
 };
-
+function checkIsNaN(biomarker, convertFrom, convertTo, value){
+	for (let i = 0; i < 3; i++) {
+  		if(isNaN(arguments[i])){
+  			return "Error with argument with name " + arguments[i];
+  		}
+    }
+}
 function converter(biomarker, convertFrom, convertTo, value){
-	if(isNaN(biomarker)){
-    	return "Ошибка! Значение аргумента 'biomarker' не числовое!\n Решение: Введите валидное значение аргумента 'biomarker'";
-    	}  
-	if(isNaN(convertFrom)){
-    	return "Ошибка! Значение аргумента 'convertFrom' не числовое!\n Решение: Введите валидное значение аргумента 'convertFrom'";
- 		}
-	if(isNaN(convertTo)){
-    	return "Ошибка! Значение аргумента 'convertTo' не числовое!\n Решение: Введите валидное значение аргумента 'convertTo'";
- 		}  	 
-	if(isNaN(value)){
-    	return "Ошибка! Значение аргумента 'value' не числовое!\n Решение: Введите валидное значение аргумента 'value'";
- 		} 
+	checkIsNaN(biomarker, convertFrom, convertTo, value);
 
 	let marker = converterDB.biomarkers[biomarker].name;
-
 	let unitFrom = converterDB.biomarkers[biomarker].unit[convertFrom][0]
 	let unitTo = converterDB.biomarkers[biomarker].unit[convertTo][0]
-
 	let convFrom = converterDB.biomarkers[biomarker].unit[convertFrom][1];
 	let convTo = converterDB.biomarkers[biomarker].unit[convertTo][1];
-	
 	let result = value * convTo/convFrom;
 
 	console.log('Биомаркер: ' + marker + '\n' + value + ' ' + unitFrom + ' = ' + result + ' ' + unitTo);
-	
 	return result.toFixed(2);
-}
-
-	// Проверка для Инсулина: converter(0,1,6,180)   = 25.9 µIU/mL
-	// Проверка для Инсулина: converter(0,6,1,25)    = 173.6 pmol/L
-	// Проверка для  Глюкозы: converter(1,0,2,5)       = 90.07795 mg/dL
-	// Проверка для  Глюкозы: converter(1,2,0,90)      = 4.9 mmol/L
-	// Проверка для      LDL: converter(2,2,0,160)     = 4.14 mmol/L
-	// Проверка для      LDL: converter(2,0,2,4)       = 154.4 mg/dL
-	// Проверка для      HDL: converter(3,2,0,40)      = 1.036 mmol/L
-	// Проверка для      HDL: converter(3,0,2,1)       = 38.6 mg/dL	
-	// Проверка для      HDL: converter(3,0,3,1)       = 3.861 mg/dL
-	// Проверка для       TG: converter(4,2,0,120)     = 1.36 mmol/L	
-	// Проверка для       TG: converter(4,0,2,1.1)     = 97.35 mg/dL
-	// Проверка для      CRP: converter(5,9,10,2)      = 19.05 nmol/L
-	// Проверка для      CRP: converter(5,10,9,20)     = 2.10 mg/dL
-	// Проверка для Homocysteine: convert(6,9,8,1.5) = 11.1 µmol/L
-	// Проверка для Homocysteine: convert(6,8,9,11)  = 1.49 mg/L
-	// Проверка для Homocysteine: convert(7,6,7,1.5) = 1.5 mIU/L
-	// Проверка для Homocysteine: convert(7,7,6,1.5)  = 1.5 µIU/mL	
-
-
-
-
-
-
+};
